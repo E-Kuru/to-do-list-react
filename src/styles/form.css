@@ -4,9 +4,9 @@ form{
 }
 form button{
     height: 30px;
+    border: none;
     color: white;
     margin-left: 6%;
-    background-color: #0c6efd;
     border-radius: 2px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;

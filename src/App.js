@@ -10,14 +10,18 @@ class App extends React.Component {
     
     this.state = {
       tasks : [{
+        id : 0,
         description : 'Do things',
         statu : 'To do'
       },
       {
+        id : 1,
         description : 'Another One',
         statu : 'doing'
       }
     ],
+    isEdit : false,
+    editTask : ''
     }
 
     this.editTask = this.editTask.bind(this)
@@ -43,27 +47,22 @@ class App extends React.Component {
 
     const {task} = this.state
 
-    if(a.length < 1){
-
-      alert('Enter a Task name pelase')
-    }
-    else{
       this.setState({
         tasks : [{description : a, statu : 'To do'},...this.state.tasks]
-    })}
+    })
 
-  }
-
-  // Fonction qui change l'input de la tache 
-
-  inputEdit (e){
-    console.log(e.target.value);
   }
 
   // Fonction qui modifie le state 'Is Modify' pour changer l'affichage 
 
-  editTask (){
-    console.log('edit');
+  editTask (id){
+    let id = Number(e.target.id)
+    console.log(this.state.tasks.find(a => a.id === id));
+    this.setState({
+      isEdit : true,
+      editTask : e.target
+    })
+    
   }
 
   // Fonction qui change le contenu pour edit une tâche 
@@ -80,8 +79,8 @@ class App extends React.Component {
         />
 
         <List 
+        idEdit={this.state.isEdit}
         tasks={this.state.tasks}
-        edit={this.editTask} 
         deleteTask={this.deleteTask} 
         editTask={this.editTask} 
         taskSave={this.taskSave} 

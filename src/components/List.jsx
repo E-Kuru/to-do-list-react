@@ -8,21 +8,20 @@ class List extends Component {
 
         super()
 
-        // this.state = {
-        //     indexTask : 0
-        // }
+        this.state = {
+            taskInput : ''
+        }
     }
     
     render() {
 
-        const {tasks, edit, deleteTask, editTask, taskSave} = this.props
+        const {tasks, deleteTask, editTask, taskSave,isEdit} = this.props
 
         return (
             <div>
                 {tasks.map( (e, i) => (
                     <div className="tasks" key={i}>
-                        {/* <p>{i}</p> */}
-                        {/* {this.state.indexTask === i ?
+                    {isEdit ? 
                             <div className="tasks" key={i}>
                                 <input type="text" onChange={editTask} id={i}/>
                                 <select id={i} class="form-select" aria-label="Select status">
@@ -32,15 +31,16 @@ class List extends Component {
                                 </select>
                                 <button onClick={taskSave}>Edit</button>
                             </div> 
-                            :
-                        } */}
-                        <>
+                    :
+                            <>
                             <p>{e.description}</p>
                             <p>{e.statu}</p>
-                            <button onClick={edit} id={i}>Edit</button>
+                            <button onClick={editTask} id={i}>Edit</button>
                             <button onClick={deleteTask} id={i}>delet</button>    
+                            </>
 
-                        </>
+                    }
+
                     </div>
                 
                 ))}

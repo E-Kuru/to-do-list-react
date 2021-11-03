@@ -17,8 +17,6 @@ class Form extends Component {
     // Fonction qui stock la valeur de l'input dans le state theTask 
   
     handleTaskDescriptionChange(e){
-        console.log(this.props);
-
         this.setState({
             task : e.target.value
         })
@@ -39,7 +37,10 @@ class Form extends Component {
             <>
                 <form action='submit' onSubmit={this.handleSubmit}>
                     <input id='newTask' placeholder=" Ur task ?" minLength="1" onChange={this.handleTaskDescriptionChange}/>
-                    <button type='submit'>Create task</button>
+                    <button type='submit'
+                    disabled={this.state.task ? false : true}
+                    style={this.state.task ? {backgroundColor : '#0c6efd'} : {backgroundColor : '#3c87f8'}}
+                    >Create task</button>
                 </form>
 
                 <h1>List</h1>
